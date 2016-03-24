@@ -235,6 +235,60 @@ if( Object.prototype.toString.call( arrayList ) === '[object Array]' ) {
   }
 ```
 
-在现代浏览器当中，我们可以直接使用
+在现代浏览器当中，我们
+可以直接使用
 `Array.isArray(arrayList);`
 它被**Chrome 5, Firefox 4.0, IE 9, Opera 10.5 and Safari 5**这些浏览器所支持。
+
+#8. 一问：下面代码会输出什么？
+```JavaScript
+var output = (function(x){
+    delete x;
+    return x;
+  })(0);
+
+  console.log(output);
+```
+
+上面代码输出为0，`delete`操作符通常被用于删除对象属性。此处的`x`不是对象，是局部变量。因此`delete`操作符不会对本地变量产生影响。
+
+#9.二问：下面这个代码又会输出什么？
+```JavaScript
+var x = 1;
+var output = (function(){
+    delete x;
+    return x;
+  })();
+
+  console.log(output);
+```
+
+上面代码会输出的是**1**，`delete`操作符通常被用于删除对象属性。此处x不是对象，它是一个全局的数值变量。
+
+
+
+#10. 三问：下面代码会输出什么？
+```JavaScript
+var x = { foo : 1};
+var output = (function(){
+    delete x.foo;
+    return x.foo;
+  })();
+
+  console.log(output);
+```
+
+输出的是**undefined**，`delete`操作符通常被用于删除对象属性。此处的x真的是一个对象了，并且具有属性`foo`。并且作为立即运行的函数方法，它会直接删除x的foo属性，此后当我们想要引用返回被删除属性，所得到结果只会是**`undefined`**。
+
+#11. 四问：下面代码会输出啥？
+```JavaScript
+var Employee = {
+  company: 'xyz'
+}
+var emp1 = Object.create(Employee);
+delete emp1.company
+console.log(emp1.company);
+```
+
+上述代码会输出xyz,此处的`emp1`对象所使用的`company`属性是属于其原型链上的属性，`delete`操作符不能删除原型链上的属性。
+**emp1**对象本身并不存在**company**属性，你可以使用`console.log(emp1.hasOwnProperty('company')) // false`来进行测试。当然虽然在**emp1**上我们无法做到，但是我们可以通过直接删除**Employee**上的**company**属性来达成目的。或者也可以通过删除`emp1`对象的**`__proto__`**属性上的内容。`delete emp1.__proto__.company`
