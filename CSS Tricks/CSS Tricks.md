@@ -36,6 +36,24 @@ div.content{
   
 }
 ```
+###使用`outline`制作双层边框：
+**outline: ** 用于设定四个边框的样式。
+`outline: width style color;` ==> `outline: 5px solid red;`
+```CSS
+  .outline {
+    width:200px;
+    height: 150px;
+    margin: 0 auto;
+    background: yellowgreen;
+    border: 10px solid #655;
+    outline: 5px solid deeppink;
+  }
+```
+
+缺点： 
+1. outline只能用于制作双层边框。
+2. outline产生的边框不一定会贴合border-radius产生的圆角
+
 [多边框示例](http://codepen.io/Narcissus_Liu/pen/kXZzrk)
 [box-shadow MDN相关资料](https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-shadow)
 
