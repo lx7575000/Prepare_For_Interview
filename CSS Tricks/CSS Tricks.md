@@ -36,24 +36,6 @@ div.content{
   
 }
 ```
-###使用`outline`制作双层边框：
-**outline: ** 用于设定四个边框的样式。
-`outline: width style color;` ==> `outline: 5px solid red;`
-```CSS
-  .outline {
-    width:200px;
-    height: 150px;
-    margin: 0 auto;
-    background: yellowgreen;
-    border: 10px solid #655;
-    outline: 5px solid deeppink;
-  }
-```
-
-缺点： 
-1. outline只能用于制作双层边框。
-2. outline产生的边框不一定会贴合border-radius产生的圆角
-
 [多边框示例](http://codepen.io/Narcissus_Liu/pen/kXZzrk)
 [box-shadow MDN相关资料](https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-shadow)
 
@@ -61,8 +43,11 @@ div.content{
 ##毛玻璃效果
 **相关知识点**
 `background-attachment: scroll(default) | fixed;` 设定背景图像是否固定或者随着页面其余部分滚动。
+
 `overflow: visible(default) | hidden | scroll | auto `用于设定当内容溢出元素框时发生的动作。
+
 `hsla() :`指色调(hue)、饱和度(saturation)、亮度(lightness)和透明度(alpha)。
+
 `filter: `可以在元素呈现之前，为元素的渲染提供一些效果，如模糊、颜色转移之类的。滤镜常用于调整图像、背景、边框的渲染。此处渲染毛玻璃效果我们需要用到**`blur`**进行模糊处理。
 
 首先，进行背景模糊处理我们通常会想到使用降低背景透明度的方式来进行处理。但是这么做的缺点在于同时会导致文本的可阅读性下降。所以选择借助`blur()`滤镜对元素进行模糊处理。
